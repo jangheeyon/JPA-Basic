@@ -4,8 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.Iterator;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -16,15 +14,14 @@ public class JpaMain {
         tx.begin();
         //code를 작성
         try {
-            //영속
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "B");
-            //insert sql를 db에 보내지 않고 쌓음
-            em.persist(member1);
-            em.persist(member2);
+            Member member = new Member();
+            member.setId(1L);
+            member.setUsername("A");
+            member.setRoleType(RoleType.USER);
 
-            //이때 sql 보냄
-            tx.commit();    //정상작동 시 커밋
+            em.persist(member);
+
+            tx.commit();    //정상작동 시 커밋 -> 이때 sql 보냄
         } catch (Exception e) {
             tx.rollback();  //문제 생기면 롤백
         } finally {
