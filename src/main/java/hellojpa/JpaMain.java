@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -32,7 +31,7 @@ public class JpaMain {
             //캐시가 아니고 db에서 가져오도록 강제
             em.flush();
             em.clear();
-            
+
 
             tx.commit();
         } catch (Exception e) {
